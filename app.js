@@ -8,7 +8,7 @@ const DeckApp = (() => {
   // Application State
   const state = {
     currentSlide: 1,
-    totalSlides: 9,
+    totalSlides: 10,
     soundEnabled: true,
     audioCtx: null,
     pensionChart: null,
@@ -19,7 +19,7 @@ const DeckApp = (() => {
         num: 1,
         title: "Portada Institucional",
         subtitle: "Personal de Salud y Administrativo - Hospital San Juan de Dios",
-        notes: "🎯 OBJETIVO: Conectar empáticamente con el personal del hospital.\n\n🗣️ QUÉ DECIR: 'Buenos días a todo el equipo médico, asistencial y administrativo del Hospital San Juan de Dios de Sonsón. Ambas consultoras estamos hoy aquí porque ustedes cuidan la salud y la vida de nuestra comunidad todos los días. Pero hoy queremos hacerles una pregunta muy sincera: ¿Quién está cuidando el futuro financiero y patrimonial de ustedes y de sus familias?'\n\n💡 FRASE DE IMPACTO: Su mayor activo financiero no es un inmueble ni un consultorio: es su propia capacidad de generar ingresos cada día."
+        notes: "🎯 OBJETIVO: Conectar empáticamente con el personal del hospital.\n\n🗣️ QUÉ DECIR: 'Buenos días a todo el equipo médico, asistencial y administrativo del Hospital San Juan de Dios de Sonsón. Junto con mi compañera corredora de seguros Olga Martínez estamos hoy aquí porque ustedes cuidan la salud y la vida de nuestra comunidad todos los días. Pero hoy queremos hacerles una pregunta muy sincera: ¿Quién está cuidando el futuro financiero y patrimonial de ustedes y de sus familias?'\n\n💡 FRASE DE IMPACTO: Su mayor activo financiero no es un inmueble ni un consultorio: es su propia capacidad de generar ingresos cada día."
       },
       {
         num: 2,
@@ -59,15 +59,21 @@ const DeckApp = (() => {
       },
       {
         num: 8,
-        title: "Póliza Multipropósito PALIG",
-        subtitle: "Vida Universal Indexada (Vida en Vida)",
-        notes: "🎯 OBJETIVO: Derribar el mito de 'un seguro solo sirve si muero'.\n\n🗣️ QUÉ DECIR: 'Esta solución de Pan-American Life está diseñada para disfrutarse 100% EN VIDA:\n1. Ahorro Indexado S&P 500 con Piso 0%: Opciones de ahorro tanto en pesos colombianos como en dólares (a elección de cada profesional), con rentabilidad ligada a los mercados de EE.UU. pero con piso 0% garantizado (nunca pierde capital).\n2. Anticipo hasta del 100% en Vida por Enfermedades Graves: Si diagnostican cáncer, infarto o ACV, recibe el dinero en vida para tratarse sin angustia económica.\n3. Liquidez con Valores de Rescate: Retiros o préstamos sobre su fondo para consultorio o proyectos.\n4. Patrimonio 100% Inembargable y sin Juicio de Sucesión.'\n\n💡 FRASE DE IMPACTO: El único plan que le cuida la salud en vida y le garantiza su retiro en pesos o en dólares a su elección."
+        title: "Ahorra con Propósito, Vive con Tranquilidad",
+        subtitle: "Compañía de Seguros, S.A. - PALIG",
+        notes: "🎯 OBJETIVO: Presentar la realidad pensional en Colombia y cómo Vida Flex Max ofrece una solución integral y adaptable.\n\n🗣️ QUÉ DECIR: 'Compañía de Seguros, S.A., miembro de Pan-American Life Insurance Group, nos trae esta propuesta: Ahorra con propósito, vive con tranquilidad.\nSegún el Informe Mundial sobre la Protección Social de la OIT (septiembre 2024), por primera vez más de la mitad de la población mundial está cubierta por algún tipo de protección social, pero la dura realidad es que 3.800 millones de personas siguen estando totalmente desprotegidas.\nEn Colombia existen dos regímenes pensionales: el régimen de prima media y el de ahorro individual (RAIS). En cualquiera de los dos, afrontarás brechas pensionales que pueden afectar tu futuro.\nBajo prima media la edad es 57 años mujeres y 62 hombres con 1.300 semanas. En ahorro individual se requiere capital para el 110% del salario mínimo, o al menos 1.150 semanas a los 57/62 años.\nActualmente en Colombia, el 85% de los jubilados dependen económicamente de sus familias para subsistir, y el 80% cuentan con una pensión de apenas un salario mínimo.\nExisten tres tipos de pensión en Colombia: por invalidez, por sobrevivencia y por jubilación. El seguro de Vida Flex Max se adapta como una ayuda económica adicional en cualquiera de estos escenarios.\nPuedes adicionar a tu plan: anexo de incapacidad total y permanente, seguro de enfermedades graves y seguro de accidentes personales.\nY otros beneficios: libertad en la designación de beneficiarios, protección de la brecha pensional mediante acumulación de capital, aumento de capital pagando primas en exceso hasta 5 veces la prima del seguro, libertad en la destinación del capital y flexibilidad en los años de pago. Todo vigilado por la Superintendencia Financiera de Colombia.'\n\n💡 FRASE DE IMPACTO: Ahorra con propósito, vive con tranquilidad."
       },
       {
         num: 9,
+        title: "Productos de Seguro de Vida Individual",
+        subtitle: "Simple • Personalizadas • Soluciones",
+        notes: "🎯 OBJETIVO: Exponer el portafolio de productos de seguro de vida individual, los beneficios de seguro de vida y las soluciones de Vida Universal y Vida Universal Indexada.\n\n🗣️ QUÉ DECIR: 'Una póliza para la seguridad financiera de su familia. Productos de seguro de vida individual: Simple, Personalizadas, Soluciones.\nContamos con: Vida Universal, Vida a Término, Vida Entera y Vida Universal Indexada; junto con coberturas de seguros de vida grupal personalizados.\nEntre los beneficios de seguro de vida contamos con: planificación para la jubilación, fondos educativos, planificación de patrimonio, sucesión patrimonial, protección de ejecutivos clave, protección permanente de seguro, acumulación de efectivo y confianza toda la vida.\nY a través de Vida Universal y Vida Universal Indexada, ofrecemos beneficios ideales para satisfacer las necesidades de seguro de vida de los ciudadanos extranjeros: cobertura permanente, primas flexibles, acumulación de efectivo, acceso a valores de rescate en efectivo, protección permanente, confianza toda la vida y acumulación de capital combinando hasta tres cuentas indexadas vinculadas a los principales índices globales de acciones.'\n\n💡 FRASE DE IMPACTO: Simple, Personalizadas, Soluciones para la seguridad financiera de su familia."
+      },
+      {
+        num: 10,
         title: "Cierre y Diagnóstico de 15 Min",
-        subtitle: "Agendamiento con Elena Castañeda",
-        notes: "🎯 OBJETIVO: Cierre suave y reserva del diagnóstico de 15 minutos.\n\n🗣️ QUÉ DECIR: 'Así como ustedes no recetan medicamentos sin hacer primero un diagnóstico clínico, no dejen su retiro al azar legislativo. Hoy, junto con mi colega corredora de seguros Olga Martínez, les ofrecemos una sesión de diagnóstico pensional individual de 15 minutos, totalmente gratuita y sin compromiso. Escaneen el código QR en pantalla o hagan clic en el botón de WhatsApp y agendamos su cita.'\n\n💡 FRASE DE IMPACTO: 15 minutos de diagnóstico hoy pueden garantizar la tranquilidad de los próximos 30 años de su familia."
+        subtitle: "Agendamiento con Elena Castañeda y Olga Martínez",
+        notes: "🎯 OBJETIVO: Cierre cálido y reserva de la sesión de diagnóstico individual de 15 minutos sin costo.\n\n🗣️ QUÉ DECIR: 'Así como ustedes jamás recetarían un tratamiento a un paciente sin antes hacer un diagnóstico clínico, no dejen su retiro y el patrimonio de su familia al azar de las reformas legislativas. Junto con mi compañera corredora de seguros Olga Martínez, los invitamos a una sesión técnica de diagnóstico pensional individual de 15 minutos, totalmente gratuita y sin compromiso. Escaneen con sus teléfonos el código QR de WhatsApp que ven aquí en pantalla o hagan clic en el botón, y agendamos su cita de inmediato.'\n\n💡 FRASE DE IMPACTO: 15 minutos de diagnóstico hoy pueden garantizar la tranquilidad de los próximos 30 años de su familia."
       }
     ]
   };
@@ -113,7 +119,9 @@ const DeckApp = (() => {
     
     const percentage = ((state.currentSlide - 1) / (state.totalSlides - 1)) * 100;
     if (progressBar) progressBar.style.width = `${percentage}%`;
-    if (slideCounter) slideCounter.textContent = `0${state.currentSlide} / 0${state.totalSlides}`;
+    const cur = String(state.currentSlide).padStart(2, '0');
+    const tot = String(state.totalSlides).padStart(2, '0');
+    if (slideCounter) slideCounter.textContent = `${cur} / ${tot}`;
 
     // Update Bottom Dots
     const dots = document.querySelectorAll('.nav-dot');
@@ -231,7 +239,7 @@ const DeckApp = (() => {
         <div class="space-y-3">
           <div class="font-bold text-palig-navy text-xs pb-1.5 border-b border-slate-100 flex items-center justify-between">
             <span>Diapositiva 0${meta.num}: ${meta.title}</span>
-            <span class="text-[10px] bg-sky-50 text-palig-blue border border-sky-200 px-2 py-0.5 rounded font-mono font-bold">Guía para Elena</span>
+            <span class="text-[10px] bg-sky-50 text-palig-blue border border-sky-200 px-2 py-0.5 rounded font-mono font-bold">Guía de Ponencia</span>
           </div>
           <div class="text-slate-700 text-xs leading-relaxed whitespace-pre-line bg-slate-50 p-3 rounded-xl border border-slate-200 font-sans">
             ${meta.notes}
