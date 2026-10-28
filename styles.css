@@ -1,0 +1,203 @@
+/* ==========================================================================
+   PAN-AMERICAN LIFE (PALIG) - PRESENTACIÓN INTERACTIVA PARA EL PERSONAL HOSPITALARIO
+   Diseño Institucional Claro, Confiable y Profesional (Healthcare & Insurance)
+   ========================================================================== */
+
+:root {
+  --palig-navy: #002B49;
+  --palig-navy-light: #0A3D66;
+  --palig-blue: #0072CE;
+  --palig-cyan: #009CDE;
+  --palig-light-bg: #F8FAFC;
+  --palig-surface-light: #FFFFFF;
+  --palig-alert: #DC2626;
+  --palig-alert-bg: #FEF2F2;
+  --palig-success: #059669;
+  --palig-success-bg: #ECFDF5;
+  --palig-gold: #D97706;
+  --palig-gold-bg: #FFFBEB;
+}
+
+/* Custom Scrollbars (Light Theme) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Light Medical & Institutional Atmosphere */
+body {
+  background: linear-gradient(135deg, #f0f7ff 0%, #f8fafc 40%, #eef5fb 100%);
+  background-attachment: fixed;
+  color: #1E293B;
+}
+
+/* Slide Deck Transitions */
+.slide-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.99) translateY(8px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s;
+  pointer-events: none;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide-section.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* Custom Range Slider (Light Healthcare Style) */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.custom-range::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: #E2E8F0;
+  border: 1px solid #CBD5E1;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0072CE;
+  border: 3px solid #FFFFFF;
+  cursor: pointer;
+  margin-top: -8px;
+  box-shadow: 0 2px 8px rgba(0, 114, 206, 0.4);
+  transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.custom-range::-webkit-slider-thumb:hover,
+.custom-range::-webkit-slider-thumb:active {
+  transform: scale(1.15);
+  background: #009CDE;
+  box-shadow: 0 4px 14px rgba(0, 156, 222, 0.5);
+}
+
+.custom-range::-moz-range-track {
+  height: 8px;
+  border-radius: 9999px;
+  background: #E2E8F0;
+  border: 1px solid #CBD5E1;
+}
+
+.custom-range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0072CE;
+  border: 3px solid #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 114, 206, 0.4);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+/* Navigation Dots (Light Theme) */
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: #CBD5E1;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.nav-dot:hover {
+  background-color: #009CDE;
+  transform: scale(1.2);
+}
+
+.nav-dot.active {
+  width: 28px;
+  background: linear-gradient(90deg, #002B49, #0072CE);
+  box-shadow: 0 2px 8px rgba(0, 114, 206, 0.35);
+}
+
+/* Quick Preset Button Active State */
+.preset-btn.active-preset {
+  background-color: #002B49 !important;
+  color: #FFFFFF !important;
+  border-color: #002B49 !important;
+  box-shadow: 0 2px 6px rgba(0, 43, 73, 0.25);
+}
+
+/* Institutional Clean Card */
+.inst-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 4px 16px -2px rgba(0, 43, 73, 0.05);
+  transition: all 0.25s ease;
+}
+
+.inst-card:hover {
+  border-color: #BAE6FD;
+  box-shadow: 0 10px 24px -4px rgba(0, 43, 73, 0.1);
+}
+
+/* Fullscreen Optimizations */
+:fullscreen body,
+:-webkit-full-screen body {
+  background: #F8FAFC;
+}
+
+/* Print Styles for Executive Medical Dossier */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+  }
+
+  header, footer, #overviewModal, #speakerNotesDrawer, #helpModal {
+    display: none !important;
+  }
+
+  .slide-section {
+    position: relative !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    page-break-after: always !important;
+    height: auto !important;
+    min-h: auto !important;
+    padding: 2rem !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .slide-section * {
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: none !important;
+  }
+}

@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Blindaje Patrimonial & Retiro Pensional del Hospital de Sonsón San Juan de Dios | Pan-American Life</title>
+  
+  <!-- Favicon PALIG -->
+  <link rel="icon" type="image/png" href="assets/images/LogoPALIG-07.png">
+  
+  <!-- SEO & Metatags -->
+  <meta name="description" content="Presentación institucional sobre la brecha pensional en Colombia y soluciones de Vida Universal Indexada de Pan-American Life para el Hospital de Sonsón San Juan de Dios.">
+  <meta name="author" content="Elena Castañeda Castañeda - Corredora de Seguros - Pan-American Life">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            palig: {
+              navy: '#002B49',
+              navyLight: '#0A3D66',
+              blue: '#0072CE',
+              cyan: '#009CDE',
+              lightBlue: '#E0F2FE',
+              slate: '#F8FAFC',
+              alert: '#DC2626',
+              alertLight: '#FEF2F2',
+              success: '#059669',
+              successLight: '#ECFDF5',
+              gold: '#D97706',
+              goldLight: '#FFFBEB'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif']
+          },
+          boxShadow: {
+            'inst-sm': '0 2px 8px -1px rgba(0, 43, 73, 0.06)',
+            'inst-md': '0 6px 20px -2px rgba(0, 43, 73, 0.08)',
+            'inst-lg': '0 12px 32px -4px rgba(0, 43, 73, 0.12)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Chart.js via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet (Light Healthcare Theme) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased h-full overflow-hidden select-none">
+
+  <!-- TOP PROGRESS BAR -->
+  <div class="fixed top-0 left-0 w-full h-1.5 bg-slate-200 z-50">
+    <div id="progressBar" class="h-full bg-gradient-to-r from-palig-blue to-palig-cyan transition-all duration-300 w-0"></div>
+  </div>
+
+  <!-- FLOATING PRESENTER TOP HEADER BAR (LIGHT THEME) -->
+  <header class="fixed top-2 left-0 right-0 z-40 px-4 md:px-8 py-2 flex items-center justify-between pointer-events-none">
+    <!-- Brand / Hospital Event Label -->
+    <div class="flex items-center space-x-3 pointer-events-auto bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200 shadow-inst-sm">
+      <img src="assets/images/LogoPALIG-07.png" alt="Pan-American Life Insurance Group" class="h-6 sm:h-7 w-auto object-contain">
+      <div class="h-4 w-px bg-slate-200 hidden sm:block"></div>
+      <div class="flex items-center space-x-2">
+        <span class="text-[10px] text-palig-blue font-bold px-1.5 py-0.5 rounded bg-sky-100 uppercase tracking-wide hidden sm:inline">Hospital Sonsón</span>
+        <span class="text-[10px] text-slate-500 font-medium hidden md:inline">Protección Patrimonial &amp; Retiro</span>
+      </div>
+    </div>
+
+    <!-- Right Controls: Slide Indicator + Tools -->
+    <div class="flex items-center space-x-2 pointer-events-auto">
+      <!-- Slide Counter Pill -->
+      <div class="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200 shadow-inst-sm flex items-center space-x-2">
+        <span class="text-xs text-slate-500 font-medium">Diapositiva</span>
+        <span id="slideCounter" class="text-xs font-bold text-palig-navy tracking-wider">01 / 10</span>
+      </div>
+
+      <!-- Presenter Tool Buttons -->
+      <div class="hidden sm:flex items-center bg-white/95 backdrop-blur-md p-1 rounded-full border border-slate-200 shadow-inst-sm space-x-1">
+        <button id="btnOverview" title="Selector de Diapositivas (G)" class="p-1.5 hover:bg-slate-100 rounded-full text-slate-600 hover:text-palig-navy transition-colors">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+        </button>
+        <button id="btnSpeakerNotes" title="Notas para Ponente (N)" class="p-1.5 hover:bg-slate-100 rounded-full text-slate-600 hover:text-palig-navy transition-colors">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+        </button>
+        <button id="btnSoundToggle" title="Sonido de Interacción (S)" class="p-1.5 hover:bg-slate-100 rounded-full text-slate-600 hover:text-palig-navy transition-colors">
+          <i id="soundIcon" data-lucide="volume-2" class="w-4 h-4"></i>
+        </button>
+        <button id="btnHelp" title="Atajos de Teclado (?)" class="p-1.5 hover:bg-slate-100 rounded-full text-slate-600 hover:text-palig-navy transition-colors">
+          <i data-lucide="help-circle" class="w-4 h-4"></i>
+        </button>
+        <button id="btnFullscreen" title="Pantalla Completa (F)" class="p-1.5 hover:bg-slate-100 rounded-full text-palig-blue hover:text-palig-navy transition-colors">
+          <i id="fullscreenIcon" data-lucide="maximize" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Quick WhatsApp Button with Both Consultoras' Photos -->
+      <div class="flex items-center bg-emerald-600 hover:bg-emerald-700 text-white p-1 sm:px-3 sm:py-1.5 rounded-full shadow-md text-xs transition-all space-x-2">
+        <div class="flex items-center -space-x-2">
+          <img src="assets/images/elena-castaneda.jpg" alt="Elena Castañeda" class="w-6 h-6 rounded-full object-cover object-top border-2 border-white shrink-0">
+          <img src="assets/images/o-martinez.png" alt="Olga Martínez" class="w-6 h-6 rounded-full object-cover border-2 border-white shrink-0">
+        </div>
+        <a href="https://wa.me/573183101314?text=Hola%20Elena,%20estuve%20en%20la%20charla%20del%20hospital%20y%20quiero%20conocer%20mi%20diagn%C3%B3stico%20pensional%20con%20Pan-American%20Life." 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           title="WhatsApp Corredoras de Seguros" 
+           class="hidden md:inline font-bold hover:underline">
+          Elena &amp; Olga
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SLIDES CONTAINER (SPA Deck) -->
+  <main id="deckContainer" class="relative w-full h-full overflow-hidden">
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 1: PORTADA DE ALTO IMPACTO (CLARO / HOSPITALARIO) -->
+    <!-- ========================================================================= -->
+    <section class="slide-section active flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="1">
+      <div class="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+        
+        <!-- Left Column: Title & Hook -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          
+          <div class="flex flex-wrap items-center gap-3">
+            <img src="assets/images/LogoPALIG-07.png" alt="Pan-American Life Insurance Group" class="h-10 sm:h-12 w-auto object-contain">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-100 border border-sky-300 text-palig-navy text-xs font-bold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-palig-blue animate-pulse"></span>
+              <span>Hospital San Juan de Dios</span>
+            </div>
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy leading-tight tracking-tight">
+            Blindaje Patrimonial &amp; Retiro Pensional
+            <span class="block text-xl sm:text-2xl lg:text-3xl font-semibold text-palig-blue mt-2.5">
+              Para el personal de la salud y administrativo del hospital San Juan de Dios
+            </span>
+          </h1>
+
+          <div class="relative pl-5 border-l-4 border-palig-blue">
+            <p class="text-lg sm:text-xl font-light text-slate-700 leading-relaxed italic">
+              "¿Quién cuida el futuro financiero de quien cuida la salud y el bienestar de los demás?"
+            </p>
+          </div>
+
+          <p class="text-slate-600 text-sm sm:text-base max-w-xl leading-relaxed">
+            Estrategias de planeación y protección de retiro frente a la nueva reforma pensional, con el respaldo internacional de <strong class="text-palig-navy font-bold">Pan-American Life</strong>.
+          </p>
+
+          <!-- Slide 1 Action Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <button onclick="DeckApp.nextSlide()" class="btn-primary flex items-center space-x-2 text-base font-bold px-6 py-3.5 bg-palig-navy hover:bg-palig-blue text-white rounded-xl shadow-inst-md transform hover:-translate-y-0.5 transition-all">
+              <span>Iniciar Presentación</span>
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </button>
+            <span class="text-xs text-slate-500 hidden sm:inline flex items-center space-x-1">
+              <kbd class="px-2 py-1 bg-white rounded text-[11px] font-mono text-slate-600 border border-slate-300 shadow-sm">Espacio</kbd>
+              <span>o</span>
+              <kbd class="px-2 py-1 bg-white rounded text-[11px] font-mono text-slate-600 border border-slate-300 shadow-sm">→</kbd>
+              <span>para avanzar</span>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Presenters Profile Card -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-md bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-inst-lg relative space-y-4">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <span class="text-xs text-palig-blue font-bold uppercase tracking-wider flex items-center space-x-1.5">
+                <i data-lucide="users" class="w-4 h-4"></i>
+                <span>Corredoras de Seguros</span>
+              </span>
+              <img src="assets/images/LogoPALIG-07.png" alt="Pan-American Life" class="h-5 w-auto object-contain">
+            </div>
+
+            <!-- Presenter 1: Elena Castañeda Castañeda -->
+            <div class="flex items-center space-x-4 p-3 rounded-xl bg-slate-50 border border-slate-200/90 hover:border-palig-blue transition-all">
+              <div class="relative shrink-0">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-palig-blue p-0.5 shadow-sm overflow-hidden">
+                  <img src="assets/images/elena-castaneda.jpg" alt="Elena Castañeda Castañeda" class="w-full h-full object-cover object-top rounded-[14px]">
+                </div>
+              </div>
+              <div class="space-y-1 min-w-0 flex-1">
+                <span class="text-[10px] text-palig-blue font-bold uppercase tracking-wider block">Corredora de Seguros</span>
+                <h3 class="text-base sm:text-lg font-display font-bold text-palig-navy leading-tight truncate">
+                  Elena Castañeda Castañeda
+                </h3>
+                <div class="pt-0.5 flex items-center space-x-2">
+                  <a href="https://wa.me/573183101314" target="_blank" class="inline-flex items-center space-x-1.5 text-xs font-bold text-emerald-700 bg-white hover:bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 transition-colors">
+                    <i data-lucide="phone-call" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>+57 318 310 1314</span>
+                  </a>
+                  <a href="mailto:Elenita7838@gmail.com" class="text-[10px] text-slate-500 hover:text-palig-blue font-mono hidden sm:inline truncate transition-colors" title="Escribir correo a Elena">
+                    Elenita7838@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Presenter 2: Olga Martínez -->
+            <div class="flex items-center space-x-4 p-3 rounded-xl bg-slate-50 border border-slate-200/90 hover:border-palig-blue transition-all">
+              <div class="relative shrink-0">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-palig-blue p-0.5 shadow-sm overflow-hidden">
+                  <img src="assets/images/o-martinez.png" alt="Olga Martínez" class="w-full h-full object-cover rounded-[14px]">
+                </div>
+              </div>
+              <div class="space-y-1 min-w-0 flex-1">
+                <span class="text-[10px] text-palig-blue font-bold uppercase tracking-wider block">Corredora de Seguros</span>
+                <h3 class="text-base sm:text-lg font-display font-bold text-palig-navy leading-tight truncate">
+                  Olga Martínez
+                </h3>
+                <div class="pt-0.5 flex items-center space-x-2">
+                  <a href="tel:3133171853" class="inline-flex items-center space-x-1.5 text-xs font-bold text-palig-navy bg-white hover:bg-sky-50 px-2.5 py-1 rounded-lg border border-slate-200 transition-colors">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-palig-blue"></i>
+                    <span>313 317 1853</span>
+                  </a>
+                  <a href="mailto:onmartinez1127@gmail.com" class="text-[10px] text-slate-400 hover:text-palig-blue font-mono hidden sm:inline truncate transition-colors" title="Escribir correo a Olga">
+                    onmartinez1127@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shared Footer Note -->
+            <div class="pt-2 border-t border-slate-100">
+              <p class="text-xs text-slate-600 leading-relaxed text-center sm:text-left">
+                Especialistas en planes de retiro pensional, optimización tributaria y protección patrimonial para el personal de la salud y administrativo.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 2: VIDEO INSTITUCIONAL / INTRODUCTORIO -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="2">
+      <div class="max-w-5xl w-full mx-auto space-y-5 text-center relative z-10">
+        
+        <div class="space-y-2 max-w-2xl mx-auto flex flex-col items-center">
+          <img src="assets/images/LogoPALIG-07.png" alt="Pan-American Life" class="h-8 sm:h-9 w-auto object-contain mx-auto mb-1">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-palig-navy text-xs font-bold uppercase tracking-wider border border-sky-300">
+            <i data-lucide="play-circle" class="w-3.5 h-3.5 text-palig-blue"></i>
+            <span>Video de Introducción &amp; Sensibilización</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-palig-navy">
+            La Realidad del Retiro y la Protección Médica
+          </h2>
+          <p class="text-slate-600 text-xs sm:text-sm">
+            Un mensaje fundamental para el personal y especialistas del Hospital de Sonsón San Juan de Dios.
+          </p>
+        </div>
+
+        <!-- Video Player Container -->
+        <div class="relative bg-slate-900 rounded-2xl overflow-hidden shadow-inst-lg border-2 border-slate-200 mx-auto max-w-4xl">
+          <video id="introVideo" controls playsinline preload="metadata" class="w-full max-h-[62vh] object-contain mx-auto">
+            <source src="WhatsApp Video 2026-10-27 at 6.31.50 PM.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video HTML5.
+          </video>
+        </div>
+
+        <!-- Video Footer Action -->
+        <div class="flex items-center justify-center space-x-3 text-xs text-slate-500 pt-1">
+          <button onclick="DeckApp.nextSlide()" class="btn-primary inline-flex items-center space-x-2 px-6 py-2.5 bg-palig-navy hover:bg-palig-blue text-white rounded-xl shadow-inst-sm font-semibold transition-all">
+            <span>Continuar con la Presentación</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 3: LA PARADOJA DEL PERSONAL DE SALUD EN COLOMBIA -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="3">
+      <div class="max-w-6xl w-full mx-auto space-y-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider border border-amber-200">
+            <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-600"></i>
+            <span>Diagnóstico Socioeconómico Hospitalario</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy">
+            La Paradoja del Profesional de la Salud
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">
+            Máxima entrega y dedicación diaria en el hospital, pero atrapados en un sistema que no protege la continuidad de sus ingresos en la vejez o ante una enfermedad.
+          </p>
+        </div>
+
+        <!-- 3 Clean Contrast Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Card 1 -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-inst-sm hover:border-palig-blue transition-all flex flex-col justify-between space-y-5">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-palig-blue">
+                <i data-lucide="stethoscope" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-palig-blue tracking-wider uppercase block">01. La Realidad Actual</span>
+              <h3 class="text-xl font-display font-bold text-palig-navy">Ingresos sin Garantía Fija</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                Jornadas extenuantes con ingresos basados en honorarios o contratos de prestación de servicios. Si no hay presencia física activa, la facturación se detiene.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100">
+              <span class="inline-flex items-center px-3 py-1 rounded-lg bg-sky-50 text-palig-blue text-xs font-bold border border-sky-200 w-full justify-center">
+                Dependencia 100% presencial
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white border border-red-200 rounded-2xl p-6 shadow-inst-sm hover:border-red-400 transition-all flex flex-col justify-between space-y-5">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-red-600 tracking-wider uppercase block">02. El Talón de Aquiles</span>
+              <h3 class="text-xl font-display font-bold text-palig-navy">Si la Salud Falla, Ingresos a $0</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                La capacidad de facturar depende al 100% de la destreza física y mental. Ante un evento médico o incapacidad, el flujo de honorarios cae de inmediato.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-red-100">
+              <span class="inline-flex items-center px-3 py-1 rounded-lg bg-red-50 text-red-700 text-xs font-bold border border-red-200 w-full justify-center">
+                Vulnerabilidad 100% Inmediata
+              </span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white border border-amber-200 rounded-2xl p-6 shadow-inst-sm hover:border-amber-400 transition-all flex flex-col justify-between space-y-5">
+            <div class="space-y-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600">
+                <i data-lucide="trending-down" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-amber-700 tracking-wider uppercase block">03. La Gran Ilusión</span>
+              <h3 class="text-xl font-display font-bold text-palig-navy">El Abismo de la Jubilación</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                El Estado subsidia solo hasta 2.3 salarios mínimos. Quien gana $15M o $20M mensuales solo recibirá ~$3.8M de pensión pública (apenas el 20%-25% de su estilo de vida actual).
+              </p>
+            </div>
+            <div class="pt-4 border-t border-amber-100">
+              <span class="inline-flex items-center px-3 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200 w-full justify-center">
+                Pensión pública &lt; 25% del ingreso real
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Clean Takeaway Strip -->
+        <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 flex items-center justify-between flex-wrap gap-3">
+          <div class="flex items-center space-x-3">
+            <i data-lucide="lightbulb" class="w-5 h-5 text-palig-blue shrink-0"></i>
+            <span class="text-xs sm:text-sm text-slate-700 font-medium">
+              <strong class="text-palig-navy font-bold">Conclusión Clave:</strong> Su activo más valioso no es un inmueble ni una inversión: es su propia capacidad de generar ingresos cada día.
+            </span>
+          </div>
+          <button onclick="DeckApp.nextSlide()" class="text-xs font-bold text-palig-blue hover:text-palig-navy flex items-center space-x-1 transition-colors">
+            <span>Ver Impacto de la Reforma</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 4: RADIOGRAFÍA DE LA NUEVA REFORMA PENSIONAL -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="4">
+      <div class="max-w-6xl w-full mx-auto space-y-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-slate-200 pb-4 gap-4">
+          <div>
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider border border-red-200 mb-2">
+              <i data-lucide="scale" class="w-3.5 h-3.5"></i>
+              <span>Proyección Normativa 2026 - 2027</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy">
+              La Nueva Reforma en 3 Puntos Clave
+            </h2>
+          </div>
+          <div class="text-left md:text-right">
+            <span class="text-xs text-slate-500 block font-medium">Entrada en vigencia estimada</span>
+            <span class="text-sm sm:text-base font-bold text-palig-blue bg-sky-50 px-3 py-1 rounded-lg border border-sky-200 inline-block mt-0.5">1 de Abril de 2027</span>
+          </div>
+        </div>
+
+        <!-- 3 High-Impact Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Card 1: Techo -->
+          <div class="bg-white border border-slate-200 hover:border-palig-blue rounded-2xl p-6 shadow-inst-sm space-y-4 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-palig-blue">
+              <i data-lucide="landmark" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase font-bold text-palig-blue tracking-wider block">01. El Techo Público</span>
+              <h3 class="text-xl font-bold text-palig-navy mt-1">Tope de 2.3 SMLMV</h3>
+            </div>
+            <div class="text-2xl sm:text-3xl font-display font-extrabold text-palig-navy">
+              ~$4.027.082 <span class="text-xs font-normal text-slate-500 font-sans block mt-0.5">Base máxima subsidiada en Colpensiones</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              El Estado solo subsidia hasta este tope y aplica tasa de reemplazo máxima del 65%. <strong>Pensión pública real máxima: solo ~$2.6M a $2.8M</strong>. Por encima de este valor, el subsidio estatal es de <strong>$0</strong>.
+            </p>
+          </div>
+
+          <!-- Card 2: Ahorro sin piso -->
+          <div class="bg-white border border-slate-200 hover:border-emerald-500 rounded-2xl p-6 shadow-inst-sm space-y-4 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+              <i data-lucide="piggy-bank" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase font-bold text-emerald-600 tracking-wider block">02. El Excedente</span>
+              <h3 class="text-xl font-bold text-palig-navy mt-1">Ahorro sin Garantía</h3>
+            </div>
+            <div class="text-2xl sm:text-3xl font-display font-extrabold text-emerald-700">
+              0% Garantizado <span class="text-xs font-normal text-slate-500 font-sans block mt-0.5">Riesgo 100% asumido por usted</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Todo peso cotizado por encima de 2.3 SMLMV va a cuentas administradas donde el afiliado asume el riesgo financiero y la volatilidad, sin tasa fija del Estado.
+            </p>
+          </div>
+
+          <!-- Card 3: Sobretasa -->
+          <div class="bg-white border border-slate-200 hover:border-red-400 rounded-2xl p-6 shadow-inst-sm space-y-4 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600">
+              <i data-lucide="coins" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <span class="text-[11px] uppercase font-bold text-red-600 tracking-wider block">03. Impuesto Solidario</span>
+              <h3 class="text-xl font-bold text-palig-navy mt-1">Sobretasa sin Retorno</h3>
+            </div>
+            <div class="text-2xl sm:text-3xl font-display font-extrabold text-red-600">
+              Hasta $437.700 <span class="text-xs font-normal text-slate-500 font-sans block mt-0.5">Descuento mensual en su colilla</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Descuento directo que va a un fondo común del Estado. No construye pensión para usted, no gana rendimientos y nunca se le devuelve en el retiro.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Clean Impact Summary Banner -->
+        <div class="bg-red-50 border border-red-200 rounded-2xl p-6 shadow-inst-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 text-center md:text-left">
+            <span class="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-wider text-red-700">
+              <i data-lucide="alert-circle" class="w-4 h-4"></i>
+              <span>El Resultado Matemático para el Personal Hospitalario:</span>
+            </span>
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl leading-relaxed">
+              Si sus ingresos mensuales rondan entre <strong>$10M y $25M COP</strong>, su pensión del sistema público difícilmente superará los <strong>~$2.8M a $3.8M</strong>.
+            </p>
+          </div>
+          <div class="bg-white border border-red-300 px-6 py-4 rounded-xl text-center shadow-sm shrink-0 w-full md:w-auto">
+            <span class="text-[11px] uppercase tracking-wider text-red-700 font-bold block">Pérdida de Ingresos</span>
+            <span class="text-3xl sm:text-4xl font-extrabold text-red-600 font-display block my-1">-75% a -85%</span>
+            <span class="text-[11px] text-slate-500">Abismo pensional proyectado</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 5: WIDGET INTERACTIVO - CALCULADORA DE BRECHA PENSIONAL -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="5">
+      <div class="max-w-6xl w-full mx-auto space-y-5 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-1">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-100 text-palig-navy text-xs font-bold uppercase tracking-wider border border-sky-300">
+            <i data-lucide="calculator" class="w-3.5 h-3.5 text-palig-blue"></i>
+            <span>Simulador Financiero en Tiempo Real</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-palig-navy">
+            Calcula tu Brecha Pensional
+          </h2>
+          <p class="text-slate-600 text-xs sm:text-sm">
+            <strong class="text-palig-navy font-bold">¿Qué es la Brecha Pensional?</strong> Es el dinero que le faltará cada mes entre su nivel de vida actual y lo máximo que le pagará el sistema público.
+          </p>
+        </div>
+
+        <!-- Calculator Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          <!-- Left Control Panel (Inputs & Sliders) -->
+          <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-inst-md flex flex-col justify-between space-y-5">
+            
+            <div class="space-y-4">
+              <!-- Slider Input 1: Ingreso Mensual Actual -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <label for="incomeSlider" class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                    <i data-lucide="wallet" class="w-4 h-4 text-palig-blue"></i>
+                    <span>Tu Ingreso Mensual Actual:</span>
+                  </label>
+                  <span id="incomeDisplay" class="text-xl font-extrabold font-display text-palig-navy bg-sky-50 px-3 py-1 rounded-lg border border-sky-200">
+                    $18.000.000 COP
+                  </span>
+                </div>
+
+                <input type="range" id="incomeSlider" min="1423500" max="35000000" step="100000" value="18000000" class="custom-range w-full h-2 rounded-lg cursor-pointer">
+                
+                <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+                  <span title="Salario Mínimo Legal Vigente">$1.423.500 (1 SMLMV)</span>
+                  <span>$18.000.000</span>
+                  <span>$35.000.000</span>
+                </div>
+
+                <!-- Quick Selection Preset Pills -->
+                <div class="flex flex-wrap gap-1.5 pt-1.5 items-center">
+                  <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mr-1">Rápido:</span>
+                  <button type="button" onclick="DeckApp.setIncome(1423500)" class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-palig-blue transition-colors">1 SMLMV ($1.42M)</button>
+                  <button type="button" onclick="DeckApp.setIncome(4027082)" class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-palig-blue transition-colors">Tope 2.3 SMLMV</button>
+                  <button type="button" onclick="DeckApp.setIncome(10000000)" class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-palig-blue transition-colors">$10M</button>
+                  <button type="button" onclick="DeckApp.setIncome(18000000)" class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-sky-100 text-palig-blue border border-sky-300">$18M</button>
+                  <button type="button" onclick="DeckApp.setIncome(25000000)" class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 hover:bg-sky-100 text-slate-700 hover:text-palig-blue transition-colors">$25M</button>
+                </div>
+              </div>
+
+              <!-- Extra parameter: Years to retirement -->
+              <div class="space-y-2 pt-1 border-t border-slate-100">
+                <div class="flex items-center justify-between">
+                  <label for="yearsSlider" class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                    <i data-lucide="clock" class="w-4 h-4 text-amber-600"></i>
+                    <span>Años para tu Retiro:</span>
+                  </label>
+                  <span id="yearsDisplay" class="text-base font-bold font-display text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded border border-amber-200">
+                    15 años
+                  </span>
+                </div>
+                <input type="range" id="yearsSlider" min="5" max="30" step="1" value="15" class="custom-range w-full h-2 rounded-lg cursor-pointer">
+              </div>
+            </div>
+
+            <!-- Impact Question Callout -->
+            <div class="bg-red-50 border-l-4 border-red-500 p-3.5 rounded-r-xl">
+              <p class="text-xs text-slate-700 italic leading-snug">
+                <strong class="text-red-700 not-italic font-bold block mb-0.5">Pregunta de Reflexión Familiar:</strong>
+                "Si hoy tu hogar vive con <span id="calloutIncome" class="font-bold text-palig-navy">$18 millones</span>, ¿cómo sostendrás los gastos, educación de tus hijos, salud y compromisos con solo <span id="calloutPension" class="font-bold text-palig-navy">$4.2 millones</span>?"
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Right Results Panel (Metrics & Chart.js) -->
+          <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-inst-md flex flex-col justify-between space-y-4">
+            
+            <!-- Dynamic Metric Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              
+              <!-- Card 1: Pensión Pública Estimada -->
+              <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                <div class="flex items-center space-x-1.5 text-slate-500 text-[11px] font-bold">
+                  <i data-lucide="landmark" class="w-3.5 h-3.5 text-palig-blue"></i>
+                  <span>Pensión Pública Est.</span>
+                </div>
+                <div id="statPension" class="text-xl sm:text-2xl font-extrabold font-display text-palig-navy">
+                  $4.150.000
+                </div>
+                <span class="text-[10px] text-slate-500 block">Tope Colpensiones + Ahorro</span>
+              </div>
+
+              <!-- Card 2: Brecha Mensual en Rojo -->
+              <div class="bg-red-50 border border-red-200 rounded-xl p-3.5 space-y-1 shadow-sm">
+                <div class="flex items-center space-x-1.5 text-red-700 text-[11px] font-bold uppercase tracking-wider">
+                  <i data-lucide="trending-down" class="w-3.5 h-3.5"></i>
+                  <span>Brecha Mensual</span>
+                </div>
+                <div id="statGap" class="text-xl sm:text-2xl font-extrabold font-display text-red-600">
+                  -$13.850.000
+                </div>
+                <span class="text-[10px] text-red-600/80 block font-medium">Déficit mensual en su hogar</span>
+              </div>
+
+              <!-- Card 3: Caída de Nivel de Vida -->
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 space-y-1">
+                <div class="flex items-center space-x-1.5 text-amber-800 text-[11px] font-bold">
+                  <i data-lucide="percent" class="w-3.5 h-3.5 text-amber-600"></i>
+                  <span>Pérdida de Nivel</span>
+                </div>
+                <div id="statDropPercent" class="text-xl sm:text-2xl font-extrabold font-display text-amber-800">
+                  -76.9%
+                </div>
+                <span class="text-[10px] text-amber-700/80 block font-medium">Caída de su nivel de vida</span>
+              </div>
+
+            </div>
+
+            <!-- Chart.js Container -->
+            <div class="bg-slate-50/70 border border-slate-200 rounded-xl p-3.5 relative flex-1 min-h-[200px]">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-palig-navy uppercase tracking-wider">Comparativa Mensual de Ingresos</span>
+                <span class="text-[11px] text-slate-500">Valores en COP</span>
+              </div>
+              <div class="h-44 w-full relative">
+                <canvas id="pensionChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Cumulative Gap Footer Notice -->
+            <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-between flex-wrap gap-2 text-xs">
+              <span class="text-slate-600 font-medium">
+                Brecha acumulada en 20 años de retiro sin pensión privada:
+              </span>
+              <span id="statCumulativeGap" class="font-extrabold font-display text-red-600 text-sm bg-red-100 px-2.5 py-0.5 rounded border border-red-200">
+                -$3.324.000.000 COP
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 6: ¿Y SI LA SALUD FALLA ANTES DE LA EDAD DE RETIRO? -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="6">
+      <div class="max-w-6xl w-full mx-auto space-y-8 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-3">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider border border-red-200">
+            <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+            <span>Vulnerabilidad de Ingresos en Vida</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy">
+            ¿Y si la Salud Falla Antes del Retiro?
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto">
+            Ustedes conocen la fragilidad del cuerpo mejor que nadie. ¿Qué respaldo real existe si un diagnóstico médico detiene sus labores mañana?
+          </p>
+        </div>
+
+        <!-- 2 Clean Columns -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          <!-- Left Column: Legal Reality of Invalidez en Colombia -->
+          <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-inst-sm space-y-5 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                <div class="w-10 h-10 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-red-600 shrink-0">
+                  <i data-lucide="alert-octagon" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-palig-navy">La Letra Menuda de la Pensión por Invalidez</h3>
+                  <span class="text-xs text-slate-500">Lo que el sistema público no le dice al trabajador</span>
+                </div>
+              </div>
+
+              <!-- 3 Clear Points -->
+              <div class="space-y-3">
+                <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start space-x-3">
+                  <i data-lucide="x-circle" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                  <div class="text-xs sm:text-sm text-slate-700">
+                    <strong class="text-palig-navy font-bold block mb-0.5">1. Tope Máximo del 75% (Nunca el 100% de su ingreso real):</strong>
+                    <span>La pensión por invalidez se liquida únicamente sobre el promedio cotizado (no sobre lo que realmente gana). Para quien percibe $10M o $20M, la caída de ingresos en el hogar es drástica e inmediata.</span>
+                  </div>
+                </div>
+
+                <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start space-x-3">
+                  <i data-lucide="clock" class="w-5 h-5 text-amber-600 shrink-0 mt-0.5"></i>
+                  <div class="text-xs sm:text-sm text-slate-700">
+                    <strong class="text-palig-navy font-bold block mb-0.5">2. El "Limbo" de 12 a 24 Meses ante Juntas Médicas:</strong>
+                    <span>El trámite de calificación entre EPS y juntas de invalidez tarda hasta dos años. A los 180 días de incapacidad, los pagos de la EPS bajan al 50%. ¿Cómo sostiene su familia las deudas y colegios mientras tanto?</span>
+                  </div>
+                </div>
+
+                <div class="p-3.5 bg-red-50 border border-red-200 rounded-xl flex items-start space-x-3">
+                  <i data-lucide="hand" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
+                  <div class="text-xs sm:text-sm text-slate-700">
+                    <strong class="text-red-900 font-bold block mb-0.5">3. La Trampa del 50% ("Invalidez Parcial"):</strong>
+                    <span>La ley exige perder más del 50% de la capacidad de TODO el cuerpo para pensionar. Si un médico o cirujano pierde la motricidad fina de las manos o sufre temblor, no puede volver a ejercer, pero la junta dictaminará un 25% o 35%: <strong>¡Dictamen legal: CERO pensión pública!</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Epidemiological Reality in Colombia -->
+          <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-inst-sm space-y-5 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center space-x-3 pb-3 border-b border-slate-100">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-palig-blue shrink-0">
+                  <i data-lucide="activity" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-palig-navy">La Salud en Cifras Reales en Colombia</h3>
+                  <span class="text-xs text-slate-500">Casos anuales en el país y su impacto en el personal hospitalario</span>
+                </div>
+              </div>
+
+              <!-- 3 Clean Explanatory Stat Blocks -->
+              <div class="space-y-3">
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                  <div class="flex items-center justify-between flex-wrap gap-1">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-7 h-7 rounded-lg bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="heart" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs sm:text-sm font-bold text-palig-navy">Infartos y Derrames Cerebrales (ACV)</span>
+                    </div>
+                    <span class="text-[11px] font-bold text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded font-mono">+70.000 colombianos/año</span>
+                  </div>
+                  <p class="text-xs text-slate-600 pl-9 leading-relaxed">
+                    Causa #1 de cese laboral imprevisto. El estrés hospitalario, turnos continuos y sobrecarga elevan el riesgo cardiovascular en plena edad productiva.
+                  </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                  <div class="flex items-center justify-between flex-wrap gap-1">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0">
+                        <i data-lucide="ribbon" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs sm:text-sm font-bold text-palig-navy">Nuevos Diagnósticos de Cáncer</span>
+                    </div>
+                    <span class="text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded font-mono">+81.600 casos nuevos/año</span>
+                  </div>
+                  <p class="text-xs text-slate-600 pl-9 leading-relaxed">
+                    Un tratamiento oncológico exige pausar de 6 a 12 meses. Sin presencia física en el hospital ni en la consulta privada: <strong>cero turnos = cero honorarios</strong>.
+                  </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-1">
+                  <div class="flex items-center justify-between flex-wrap gap-1">
+                    <div class="flex items-center space-x-2">
+                      <div class="w-7 h-7 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center shrink-0">
+                        <i data-lucide="brain" class="w-4 h-4"></i>
+                      </div>
+                      <span class="text-xs sm:text-sm font-bold text-palig-navy">Pérdida de Motricidad y Temblor</span>
+                    </div>
+                    <span class="text-[11px] font-bold text-sky-800 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded font-mono">+480.000 personas en el país</span>
+                  </div>
+                  <p class="text-xs text-slate-600 pl-9 leading-relaxed">
+                    Túnel carpiano severo, hernias discales o temblores esenciales. Si las manos o la espalda fallan, no es posible seguir asistiendo pacientes ni operando.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Provocative Reflection -->
+            <div class="bg-sky-50 border border-sky-200 p-3.5 rounded-xl text-center">
+              <p class="text-xs sm:text-sm text-slate-800 italic font-medium">
+                "Si una enfermedad le obliga a pausar su labor por 1 año... <strong class="text-palig-blue not-italic font-bold">¿el hospital o la EPS mantendrán los compromisos de su hogar?</strong>"
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 7: RESPALDO Y SOLVENCIA - PAN-AMERICAN LIFE INSURANCE GROUP -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="7">
+      <div class="max-w-6xl w-full mx-auto space-y-6 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-100 text-palig-navy text-xs font-bold uppercase tracking-wider border border-sky-300">
+            <i data-lucide="building-2" class="w-3.5 h-3.5 text-palig-blue"></i>
+            <span>Solidez Institucional Desde 1911</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy">
+            Pan-American Life Insurance Group
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base">
+            Más de un siglo protegiendo vidas y patrimonios a través de guerras mundiales, crisis financieras globales y pandemias.
+          </p>
+        </div>
+
+        <!-- 4 Big Stats Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-inst-sm space-y-1">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-palig-blue block">1911</span>
+            <span class="text-xs font-bold text-palig-navy block uppercase tracking-wider">Fundación en Nueva Orleans</span>
+            <span class="text-[11px] text-slate-500 block">+115 años de trayectoria continua</span>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-inst-sm space-y-1">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-emerald-600 block">$7.5B+</span>
+            <span class="text-xs font-bold text-palig-navy block uppercase tracking-wider">Activos Totales (USD)</span>
+            <span class="text-[11px] text-slate-500 block">Músculo financiero internacional</span>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-inst-sm space-y-1">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-amber-600 block">$1.56B</span>
+            <span class="text-xs font-bold text-palig-navy block uppercase tracking-wider">Ingresos Anuales (USD)</span>
+            <span class="text-[11px] text-slate-500 block">Flujo operativo y reaseguro global</span>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-inst-sm space-y-1">
+            <span class="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-display text-palig-navy block">22</span>
+            <span class="text-xs font-bold text-palig-navy block uppercase tracking-wider">Países de las Américas</span>
+            <span class="text-[11px] text-slate-500 block">+ 49 estados de EE. UU.</span>
+          </div>
+
+        </div>
+
+        <!-- Rating Agency Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Fitch Ratings -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-center justify-between shadow-inst-sm">
+            <div class="space-y-1">
+              <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Auditoría Global de Riesgo Financiero</span>
+              <h3 class="text-xl font-bold text-palig-navy">Fitch Ratings</h3>
+              <p class="text-xs text-slate-600">
+                Calificación <strong>"A" (Fuerte y Sólida)</strong>. Certifica que la compañía tiene reservas en dólares para responder puntualmente a cada asegurado.
+              </p>
+            </div>
+            <div class="bg-sky-50 border border-sky-200 px-5 py-3 rounded-2xl text-center shrink-0 ml-4">
+              <span class="text-3xl font-extrabold font-display text-palig-blue block">A</span>
+              <span class="text-[10px] text-slate-600 uppercase font-bold">Máxima Solidez</span>
+            </div>
+          </div>
+
+          <!-- AM Best -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-center justify-between shadow-inst-sm">
+            <div class="space-y-1">
+              <span class="text-xs text-slate-500 font-bold uppercase tracking-wider">Líder Mundial en Calificación de Aseguradoras</span>
+              <h3 class="text-xl font-bold text-palig-navy">AM Best</h3>
+              <p class="text-xs text-slate-600">
+                Calificación <strong>"A" (Excelente)</strong> por balance general impecable y capacidad de pago histórica durante más de un siglo.
+              </p>
+            </div>
+            <div class="bg-emerald-50 border border-emerald-200 px-5 py-3 rounded-2xl text-center shrink-0 ml-4">
+              <span class="text-3xl font-extrabold font-display text-emerald-700 block">A</span>
+              <span class="text-[10px] text-slate-600 uppercase font-bold">Excelente</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Local Compliance Badge -->
+        <div class="bg-white border border-slate-200 rounded-xl p-3.5 flex items-center justify-center space-x-3 text-xs text-slate-700 text-center shadow-inst-sm">
+          <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+          <span>
+            Vigilada por la <strong>Superintendencia Financiera de Colombia</strong> a través de Pan-American Life de Colombia Compañía de Seguros S.A.
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+        <!-- ========================================================================= -->
+    <!-- SLIDE 8: AHORRA CON PROPÓSITO, VIVE CON TRANQUILIDAD (VIDA FLEX MAX) -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="8">
+      <div class="max-w-6xl w-full mx-auto space-y-6 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span>Estrategia Pensional y Protección</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy tracking-tight uppercase">
+            Ahorra con Propósito, <span class="text-palig-blue">Vive con Tranquilidad</span>
+          </h2>
+          
+          <!-- OIT Quote Box -->
+          <div class="mt-2.5 p-3 sm:p-4 rounded-xl bg-sky-50/70 border border-sky-200 text-left max-w-2xl mx-auto shadow-sm">
+            <div class="flex items-start space-x-3">
+              <i data-lucide="quote" class="w-5 h-5 text-palig-blue shrink-0 mt-0.5 opacity-80"></i>
+              <div class="space-y-1">
+                <p class="text-xs sm:text-sm text-slate-700 italic leading-relaxed">
+                  "Por primera vez, más de la mitad de la población mundial está cubierta por algún tipo de protección social. Si bien se trata de un avance positivo, la dura realidad es que <strong class="text-palig-navy font-bold not-italic">3.800 millones de personas siguen estando totalmente desprotegidas</strong>."
+                </p>
+                <span class="text-[11px] font-bold text-palig-blue block">
+                  — Informe Mundial sobre la Protección Social, OIT (Septiembre 2024)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Columns Grid: Reality vs Vida Flex Max Solution -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 items-stretch">
+          
+          <!-- Column 1: Los 2 Regímenes y la Realidad Pensional en Colombia -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-inst-sm flex flex-col justify-between space-y-4">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-bold text-palig-navy uppercase tracking-wider flex items-center space-x-2">
+                  <i data-lucide="scale" class="w-4 h-4 text-palig-blue"></i>
+                  <span>Regímenes Pensionales en Colombia</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 border border-amber-200">
+                  Brechas en Ambos Sistemas
+                </span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                En Colombia existen dos regímenes pensionales: el <strong>Régimen de Prima Media (RPM)</strong> y el de <strong>Ahorro Individual (RAIS)</strong>. En cualquiera de los dos, afrontarás brechas pensionales que pueden afectar tu futuro.
+              </p>
+
+              <!-- Requisitos de Ley -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                  <span class="font-bold text-palig-navy block text-[11px] uppercase tracking-wide">Régimen Prima Media (RPM)</span>
+                  <p class="text-slate-600 leading-snug">
+                    Edad de pensión: <strong class="text-palig-navy">57 años mujeres</strong> y <strong class="text-palig-navy">62 años hombres</strong>, con al menos <strong class="text-palig-navy">1.300 semanas</strong> cotizadas.
+                  </p>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+                  <span class="font-bold text-palig-navy block text-[11px] uppercase tracking-wide">Ahorro Individual (RAIS)</span>
+                  <p class="text-slate-600 leading-snug">
+                    Requiere capital que garantice el <strong class="text-palig-navy">110% del SMLMV</strong>. Si no cuentas con él a los 57/62 años, accedes con mínimo <strong class="text-palig-navy">1.150 semanas</strong>.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Estadísticas Críticas de Jubilados en Colombia -->
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <div class="p-3 rounded-xl bg-red-50/70 border border-red-200 flex flex-col justify-center">
+                  <div class="flex items-baseline space-x-1">
+                    <span class="text-2xl sm:text-3xl font-display font-extrabold text-red-600">85%</span>
+                  </div>
+                  <span class="text-[11px] text-red-950 font-medium leading-tight mt-0.5">
+                    de los jubilados en Colombia <strong class="font-bold">dependen económicamente de sus familias</strong> para subsistir.
+                  </span>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200 flex flex-col justify-center">
+                  <div class="flex items-baseline space-x-1">
+                    <span class="text-2xl sm:text-3xl font-display font-extrabold text-amber-700">80%</span>
+                  </div>
+                  <span class="text-[11px] text-amber-950 font-medium leading-tight mt-0.5">
+                    de los jubilados cuentan con una pensión equivalente a <strong class="font-bold">tan solo un salario mínimo</strong> (SMLMV).
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-[11px] text-slate-500 pt-2 border-t border-slate-100 flex items-center space-x-1.5">
+              <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+              <span>El sistema obligatorio por sí solo no garantiza mantener el nivel de vida profesional.</span>
+            </div>
+          </div>
+
+          <!-- Column 2: La Solución: Vida Flex Max y Adicionales al Plan -->
+          <div class="bg-white border-2 border-palig-blue/30 rounded-2xl p-5 sm:p-6 shadow-inst-md flex flex-col justify-between space-y-4 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-100/50 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none"></div>
+
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-xs font-bold text-palig-blue uppercase tracking-wider flex items-center space-x-2">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                  <span>Solución Adaptable: Vida Flex Max</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  Ayuda Adicional en Vida
+                </span>
+              </div>
+
+              <!-- 3 Tipos de Pensión en Colombia -->
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+                <span class="text-xs font-bold text-palig-navy block">Existen tres tipos de pensión en Colombia:</span>
+                <div class="grid grid-cols-3 gap-1.5 text-center text-xs">
+                  <div class="py-1 px-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-bold text-palig-navy shadow-2xs">
+                    1. Invalidez
+                  </div>
+                  <div class="py-1 px-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-bold text-palig-navy shadow-2xs">
+                    2. Sobrevivencia
+                  </div>
+                  <div class="py-1 px-1.5 rounded-lg bg-white border border-slate-200 text-[11px] font-bold text-palig-navy shadow-2xs">
+                    3. Jubilación
+                  </div>
+                </div>
+                <p class="text-xs text-palig-navy font-semibold leading-relaxed pt-1">
+                  El seguro de <strong class="text-palig-blue font-bold">Vida Flex Max</strong> se adapta como una ayuda económica adicional en cualquiera de estos escenarios.
+                </p>
+              </div>
+
+              <!-- PUEDES ADICIONAR A TU PLAN -->
+              <div class="space-y-2">
+                <span class="text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
+                  Puedes adicionar a tu plan:
+                </span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div class="flex items-start space-x-2 p-2 rounded-lg bg-sky-50/60 border border-sky-100">
+                    <i data-lucide="shield-plus" class="w-4 h-4 text-palig-blue shrink-0 mt-0.5"></i>
+                    <span class="text-slate-700"><strong>Anexo de incapacidad</strong> total y permanente.</span>
+                  </div>
+                  <div class="flex items-start space-x-2 p-2 rounded-lg bg-sky-50/60 border border-sky-100">
+                    <i data-lucide="heart-pulse" class="w-4 h-4 text-palig-blue shrink-0 mt-0.5"></i>
+                    <span class="text-slate-700"><strong>Seguro de enfermedades</strong> graves con anticipo en vida.</span>
+                  </div>
+                  <div class="flex items-start space-x-2 p-2 rounded-lg bg-sky-50/60 border border-sky-100">
+                    <i data-lucide="user-check" class="w-4 h-4 text-palig-blue shrink-0 mt-0.5"></i>
+                    <span class="text-slate-700"><strong>Libertad en la designación</strong> de beneficiarios.</span>
+                  </div>
+                  <div class="flex items-start space-x-2 p-2 rounded-lg bg-sky-50/60 border border-sky-100">
+                    <i data-lucide="trending-up" class="w-4 h-4 text-palig-blue shrink-0 mt-0.5"></i>
+                    <span class="text-slate-700">Aumento de capital con primas en exceso <strong>hasta 5 veces</strong> la prima.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Highlight -->
+            <div class="pt-2 border-t border-slate-100 text-center">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 inline-block">
+                Ahorro con propósito, liquidez y protección patrimonial inembargable
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 9: PORTAFOLIO DE PRODUCTOS DE SEGURO DE VIDA INDIVIDUAL & GRUPAL -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="9">
+      <div class="max-w-6xl w-full mx-auto space-y-6 relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-sky-100 text-palig-navy text-xs font-bold uppercase tracking-wider border border-sky-200">
+            <i data-lucide="shield" class="w-3.5 h-3.5 text-palig-blue"></i>
+            <span>Productos de Seguro de Vida Individual</span>
+          </div>
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-extrabold text-palig-navy tracking-tight">
+            Una póliza para la <span class="text-palig-blue">seguridad financiera</span> de su familia
+          </h2>
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 tracking-wide">
+            Simple • Personalizadas • Soluciones
+          </p>
+        </div>
+
+        <!-- 4 Individual Life Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <!-- Product 1: Vida Universal -->
+          <div class="bg-white border border-slate-200 hover:border-palig-blue/60 rounded-2xl p-5 shadow-inst-sm transition-all flex flex-col justify-between space-y-3">
+            <div class="space-y-2.5">
+              <div class="w-10 h-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-palig-blue">
+                <i data-lucide="sliders" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-palig-navy">Vida Universal</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Protección permanente combinada con una cuenta de acumulación flexible. Permite ajustar coberturas y aportes según cambien sus metas y capacidad económica en el tiempo.
+              </p>
+            </div>
+            <div class="pt-2.5 border-t border-slate-100">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-sky-50 text-palig-blue text-[11px] font-bold w-full justify-center">
+                Flexibilidad y Ahorro
+              </span>
+            </div>
+          </div>
+
+          <!-- Product 2: Vida a Término -->
+          <div class="bg-white border border-slate-200 hover:border-palig-blue/60 rounded-2xl p-5 shadow-inst-sm transition-all flex flex-col justify-between space-y-3">
+            <div class="space-y-2.5">
+              <div class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-palig-navy">Vida a Término</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Máxima protección por un período específico (10, 15, 20 o 30 años) al menor costo posible. Ideal para respaldar créditos hipotecarios, deudas y la etapa de educación de los hijos.
+              </p>
+            </div>
+            <div class="pt-2.5 border-t border-slate-100">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-[11px] font-bold w-full justify-center">
+                Alta Cobertura al Menor Costo
+              </span>
+            </div>
+          </div>
+
+          <!-- Product 3: Vida Entera -->
+          <div class="bg-white border border-slate-200 hover:border-palig-blue/60 rounded-2xl p-5 shadow-inst-sm transition-all flex flex-col justify-between space-y-3">
+            <div class="space-y-2.5">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600">
+                <i data-lucide="lock" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-palig-navy">Vida Entera</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Protección garantizada de por vida con primas niveladas que nunca incrementan con la edad. Genera valores de rescate garantizados que crecen de manera predecible.
+              </p>
+            </div>
+            <div class="pt-2.5 border-t border-slate-100">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-amber-50 text-amber-800 text-[11px] font-bold w-full justify-center">
+                Garantía Vitalicia Inmodificable
+              </span>
+            </div>
+          </div>
+
+          <!-- Product 4: Vida Universal Indexada -->
+          <div class="bg-white border-2 border-palig-blue/40 hover:border-palig-blue rounded-2xl p-5 shadow-inst-sm transition-all flex flex-col justify-between space-y-3 bg-gradient-to-b from-white to-sky-50/30">
+            <div class="space-y-2.5">
+              <div class="w-10 h-10 rounded-xl bg-sky-100 border border-sky-300 flex items-center justify-center text-palig-blue">
+                <i data-lucide="trending-up" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-base sm:text-lg font-bold text-palig-navy">Vida Universal Indexada</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Ahorro e inversión disponible en pesos o en dólares con rentabilidad vinculada al S&amp;P 500 y piso garantizado del 0%: participa de las ganancias bursátiles con cero riesgo de pérdidas.
+              </p>
+            </div>
+            <div class="pt-2.5 border-t border-slate-100">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-md bg-palig-blue text-white text-[11px] font-bold w-full justify-center">
+                En Pesos y Dólares • Piso 0%
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Banner: Coberturas de seguros de vida grupal personalizados -->
+        <div class="bg-slate-900 text-white rounded-2xl p-4 sm:p-5 shadow-inst-md flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-800">
+          <div class="flex items-center space-x-3 text-center sm:text-left">
+            <div class="w-10 h-10 rounded-xl bg-palig-blue/30 border border-sky-400/40 flex items-center justify-center text-sky-300 shrink-0 mx-auto sm:mx-0">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="text-sm sm:text-base font-bold text-white leading-tight">
+                Coberturas de seguros de vida grupal personalizados
+              </h4>
+              <p class="text-xs text-slate-300 leading-snug">
+                Planes diseñados a la medida para instituciones de salud, clínicas, hospitales y empresas. Protección colectiva con condiciones preferenciales para todo el personal.
+              </p>
+            </div>
+          </div>
+          <div class="shrink-0">
+            <span class="inline-flex items-center px-3.5 py-1.5 rounded-xl bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xs font-bold whitespace-nowrap">
+              Para Hospitales y Clínicas
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================================= -->
+    <!-- SLIDE 10: CIERRE Y DIAGNÓSTICO PATRIMONIAL PERSONALIZADO -->
+    <!-- ========================================================================= -->
+    <section class="slide-section flex items-center justify-center min-h-screen px-4 sm:px-8 py-16" data-slide="10">
+      <div class="max-w-6xl w-full mx-auto space-y-6 relative z-10">
+        
+        <!-- Punchy Doctor Quote -->
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-palig-navy text-xs font-bold uppercase tracking-wider border border-sky-300">
+            <i data-lucide="clipboard-check" class="w-3.5 h-3.5 text-palig-blue"></i>
+            <span>Diagnóstico Pensional Personalizado</span>
+          </div>
+          
+          <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-palig-navy leading-tight">
+            "Así como usted no medica sin un diagnóstico previo, no permita que su retiro dependa del azar legislativo."
+          </h2>
+          <p class="text-slate-600 text-xs sm:text-sm">
+            Reserve una sesión técnica de <strong>15 minutos</strong> sin costo ni compromiso con cualquiera de nuestras corredoras de seguros.
+          </p>
+        </div>
+
+        <!-- Diagnostic Pillars Summary -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-inst-sm max-w-3xl mx-auto">
+          <span class="text-[11px] text-palig-blue font-bold uppercase tracking-wider block mb-2 text-center">
+            Su Diagnóstico Individual de 15 Minutos Incluye:
+          </span>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700">
+            <div class="flex items-center space-x-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span>Simulación personalizada de ahorro indexado en pesos o en dólares a su elección.</span>
+            </div>
+            <div class="flex items-center space-x-2.5 p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+              <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+              <span>Estrategia de blindaje en vida por incapacidad médica y enfermedades graves.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Dual Cards: Elena & Olga (Equal Status, QR Exclusively for Elena as Lead) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+          
+          <!-- Card 1: Elena Castañeda Castañeda -->
+          <div class="bg-white border-2 border-palig-blue/40 hover:border-palig-blue rounded-2xl p-5 sm:p-6 shadow-inst-md flex flex-col justify-between items-center text-center space-y-4 transition-all">
+            
+            <div class="flex flex-col items-center space-y-2">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-sky-50 border-2 border-palig-blue p-0.5 shadow-sm overflow-hidden">
+                <img src="assets/images/elena-castaneda.jpg" alt="Elena Castañeda Castañeda" class="w-full h-full object-cover object-top rounded-[14px]">
+              </div>
+              <div>
+                <span class="text-[10px] text-palig-blue font-bold uppercase tracking-wider block">Corredora de Seguros • Ponente Principal</span>
+                <h3 class="text-lg font-display font-bold text-palig-navy leading-tight">
+                  Elena Castañeda Castañeda
+                </h3>
+                <span class="text-xs text-slate-500 font-medium block">Pan-American Life Insurance Group</span>
+                <div class="pt-1 flex items-center justify-center space-x-2 text-xs">
+                  <a href="tel:3183101314" class="font-bold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                    <i data-lucide="phone-call" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>+57 318 310 1314</span>
+                  </a>
+                  <span class="text-slate-300">•</span>
+                  <a href="mailto:Elenita7838@gmail.com" class="text-slate-500 hover:text-palig-blue font-mono text-[11px]">
+                    Elenita7838@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Elena's WhatsApp QR Code (Exclusively on Elena's Card) -->
+            <div class="space-y-1.5 flex flex-col items-center">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Escanee para WhatsApp Directo</span>
+              <div class="p-2.5 bg-white rounded-2xl shadow-inst-sm border-2 border-palig-blue/30 inline-block">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=155x155&data=https%3A%2F%2Fwa.me%2F573183101314%3Ftext%3DHola%2520Elena%2C%2520estuve%2520en%2520la%2520charla%2520del%2520hospital%2520y%2520quiero%2520conocer%2520mi%2520diagn%25C3%25B3stico%2520pensional%2520con%2520Pan-American%2520Life.&color=002B49" 
+                     alt="Código QR WhatsApp Elena Castañeda" 
+                     class="w-32 h-32 sm:w-36 sm:h-36 block rounded-lg">
+              </div>
+            </div>
+
+            <!-- Direct WhatsApp Button for Elena -->
+            <a href="https://wa.me/573183101314?text=Hola%20Elena,%20estuve%20en%20la%20charla%20del%20hospital%20y%20quiero%20conocer%20mi%20diagn%C3%B3stico%20pensional%20con%20Pan-American%20Life." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-inst-sm transform hover:-translate-y-0.5 transition-all">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Agendar WhatsApp con Elena</span>
+            </a>
+
+          </div>
+
+          <!-- Card 2: Olga Martínez (Equal Status, Professional Contact Box) -->
+          <div class="bg-white border border-slate-200 hover:border-palig-blue/50 rounded-2xl p-5 sm:p-6 shadow-inst-md flex flex-col justify-between items-center text-center space-y-4 transition-all">
+            
+            <div class="flex flex-col items-center space-y-2">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-sky-50 border-2 border-palig-blue p-0.5 shadow-sm overflow-hidden">
+                <img src="assets/images/o-martinez.png" alt="Olga Martínez" class="w-full h-full object-cover rounded-[14px]">
+              </div>
+              <div>
+                <span class="text-[10px] text-palig-blue font-bold uppercase tracking-wider block">Corredora de Seguros</span>
+                <h3 class="text-lg font-display font-bold text-palig-navy leading-tight">
+                  Olga Martínez
+                </h3>
+                <span class="text-xs text-slate-500 font-medium block">Pan-American Life Insurance Group</span>
+                <div class="pt-1 flex items-center justify-center space-x-2 text-xs">
+                  <a href="tel:3133171853" class="font-bold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                    <i data-lucide="phone" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>313 317 1853</span>
+                  </a>
+                  <span class="text-slate-300">•</span>
+                  <a href="mailto:onmartinez1127@gmail.com" class="text-slate-500 hover:text-palig-blue font-mono text-[11px]">
+                    onmartinez1127@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Olga's Professional Service & Contact Info Box -->
+            <div class="w-full p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-left my-auto">
+              <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider block text-center">Atención Directa y Asesoría</span>
+              <div class="space-y-1.5 text-xs text-slate-700">
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                  <span>Acompañamiento pensional presencial y virtual</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                  <span>Asesoría personalizada en productos PALIG</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                  <span>Línea directa: +57 313 317 1853</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Direct WhatsApp Button for Olga -->
+            <a href="https://wa.me/573133171853?text=Hola%20Olga,%20estuve%20en%20la%20charla%20del%20hospital%20y%20quiero%20conocer%20mi%20diagn%C3%B3stico%20pensional%20con%20Pan-American%20Life." 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center space-x-2 shadow-inst-sm transform hover:-translate-y-0.5 transition-all">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Agendar WhatsApp con Olga</span>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Footer Verification Link -->
+        <div class="text-center pt-2">
+          <a href="https://palig.com" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 hover:text-palig-blue transition-colors">
+            Vigiladas por la Superintendencia Financiera de Colombia • <strong class="text-palig-navy hover:underline">www.palig.com</strong>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM NAVIGATION DOCK (Prev/Next, Slide Dots & Shortcuts) -->
+  <!-- ========================================================================= -->
+  <footer class="fixed bottom-3 left-0 right-0 z-40 px-4 flex items-center justify-center pointer-events-none">
+    <nav aria-label="Navegación de presentación" class="pointer-events-auto bg-white/95 backdrop-blur-md px-4 py-2 rounded-full border border-slate-200 shadow-inst-lg flex items-center space-x-4">
+      
+      <!-- Prev Slide Button -->
+      <button id="btnPrevSlide" title="Diapositiva Anterior (←)" class="p-2 hover:bg-slate-100 rounded-full text-slate-600 hover:text-palig-navy transition-all transform active:scale-95">
+        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Navigation Dots (10 Slides) -->
+      <div id="slideDotsContainer" class="flex items-center space-x-2 px-1">
+        <!-- Dots injected dynamically by app.js -->
+      </div>
+
+      <!-- Next Slide Button -->
+      <button id="btnNextSlide" title="Siguiente Diapositiva (→ o Espacio)" class="p-2 hover:bg-slate-100 rounded-full text-palig-blue hover:text-palig-navy transition-all transform active:scale-95">
+        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+      </button>
+
+    </nav>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: SLIDE SORTER / GRID OVERVIEW (Key: G) -->
+  <!-- ========================================================================= -->
+  <div id="overviewModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md hidden flex-col p-6 sm:p-10 overflow-y-auto">
+    <div class="max-w-6xl w-full mx-auto space-y-6 bg-white p-6 sm:p-8 rounded-2xl shadow-2xl border border-slate-200">
+      
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <div>
+          <h3 class="text-2xl font-display font-bold text-palig-navy flex items-center space-x-2">
+            <i data-lucide="grid" class="w-6 h-6 text-palig-blue"></i>
+            <span>Selector de Diapositivas</span>
+          </h3>
+          <span class="text-xs text-slate-500">Haga clic en cualquier diapositiva para saltar directamente a ella durante la sesión</span>
+        </div>
+        <button id="btnCloseOverview" class="p-2 hover:bg-slate-100 rounded-full text-slate-500 hover:text-slate-800 transition-colors">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Thumbnails Grid -->
+      <div id="overviewGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Injected dynamically by app.js -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: SPEAKER NOTES (Cheat Sheet for Presenters) -->
+  <!-- ========================================================================= -->
+  <aside id="speakerNotesDrawer" aria-label="Notas del ponente" class="fixed bottom-16 right-4 z-50 w-full max-w-md bg-white border border-slate-200 rounded-2xl p-4 shadow-2xl backdrop-blur-xl hidden flex-col space-y-3">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+      <div class="flex items-center space-x-2 text-palig-navy font-bold text-xs uppercase tracking-wider">
+        <i data-lucide="file-text" class="w-4 h-4 text-palig-blue"></i>
+        <span>Guía y Notas de Apoyo de Ponencia</span>
+      </div>
+      <button id="btnCloseNotes" class="p-1 hover:bg-slate-100 rounded text-slate-400 hover:text-slate-700">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <div id="speakerNotesContent" class="text-xs text-slate-700 leading-relaxed max-h-80 sm:max-h-96 overflow-y-auto pr-1">
+      <!-- Injected dynamically per current slide -->
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: KEYBOARD SHORTCUTS HELP (?) -->
+  <!-- ========================================================================= -->
+  <div id="helpModal" class="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-lg font-bold text-palig-navy flex items-center space-x-2">
+          <i data-lucide="keyboard" class="w-5 h-5 text-palig-blue"></i>
+          <span>Atajos de Navegación</span>
+        </h3>
+        <button id="btnCloseHelp" class="p-1 hover:bg-slate-100 rounded text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Siguiente Diapositiva</span>
+          <div class="flex space-x-1">
+            <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">→</kbd>
+            <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">Espacio</kbd>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Diapositiva Anterior</span>
+          <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">←</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Pantalla Completa</span>
+          <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">F</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Vista Cuadrícula (Todas)</span>
+          <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">G</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Notas para Ponente</span>
+          <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">N</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Silenciar / Activar Sonido</span>
+          <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">S</kbd>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-slate-600">Primera / Última Diapositiva</span>
+          <div class="flex space-x-1">
+            <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">Inicio</kbd>
+            <kbd class="px-2 py-1 bg-slate-100 rounded text-slate-700 font-mono border border-slate-200">Fin</kbd>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 text-center">
+        <button id="btnAcknowledgeHelp" class="w-full py-2 bg-palig-navy hover:bg-palig-blue text-white text-xs font-bold rounded-lg transition-colors shadow-sm">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
